@@ -42,6 +42,12 @@
 <> (%join (> (?. (?* ?z))) ?a) (%%join (?.) (?*) ?a ?z)
 <> (%join (?x ?y) ?a) (%join ?y (?x ?a))
 
+?(?-) (Swap the line under cursor with the one following it)
+<> (%exchange (> ()) ?a) (%merge ?a (> ()))
+<> (%exchange (> (?x ())) ?a) (%merge ?a (> (?x ())))
+<> (%exchange (> (?x (?y ?z))) ?a) (%merge ?a (> (?y (?x ?z))))
+<> (%exchange (?x ?y) ?a) (%exchange ?y (?x ?a))
+
 ?(?-) (Editor command dispatching)
 <> (editor ?x (q)) (print bye!\n)
 <> (editor ?x (a)) (%append ?x dummy ())
@@ -51,5 +57,6 @@
 <> (editor ?x (-)) (%prev ?x ())
 <> (editor ?x (+)) (%next ?x ())
 <> (editor ?x (j)) (%join ?x ())
+<> (editor ?x (e)) (%exchange ?x ())
 <> (editor ?x ?~) (editor ?x (?~))
 editor (> ()) input
