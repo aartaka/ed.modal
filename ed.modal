@@ -48,6 +48,11 @@
 <> (%exchange (> (?x (?y ?z))) ?a) (%merge ?a (> (?y (?x ?z))))
 <> (%exchange (?x ?y) ?a) (%exchange ?y (?x ?a))
 
+?(?-) (Print current line number (in unary))
+<> (%count (> ()) ?a ?^) (print1 (?^ \n) (%merge ?a (> ())))
+<> (%count (> (?x ?y)) ?a ?^) (print1 (?^ \n) (%merge ?a (> (?x ?y))))
+<> (%count (?x ?y) ?a ?.) (%count ?y (?x ?a) (i ?.))
+
 ?(?-) (Editor command dispatching)
 <> (editor ?x (q)) (print bye!\n)
 <> (editor ?x (a)) (%append ?x dummy ())
@@ -58,5 +63,6 @@
 <> (editor ?x (+)) (%next ?x ())
 <> (editor ?x (j)) (%join ?x ())
 <> (editor ?x (e)) (%exchange ?x ())
+<> (editor ?x (=)) (%count ?x () (i))
 <> (editor ?x ?~) (editor ?x (?~))
 editor (> ()) input
