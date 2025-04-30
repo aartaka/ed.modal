@@ -53,6 +53,14 @@
 <> (%count (> (?x ?y)) ?a ?^) (print1 (?^ \n) (%merge ?a (> (?x ?y))))
 <> (%count (?x ?y) ?a ?.) (%count ?y (?x ?a) (i ?.))
 
+?(?-) (Scroll to N-th line (in unary, removes all previous cursors))
+<> (%scroll () ?a ()) (%merge ?a ())
+<> (%scroll () ?a ?n) (%merge ?a (> ()))
+<> (%scroll (> ?x) ?a ?n) (%scroll ?x ?a ?n)
+<> (%scroll (?x ?y) ?a ()) (%scroll ?y (?x ?a) ())
+<> (%scroll (?x ?y) ?a (i ())) (%scroll ?y (?x (> ?a)) ())
+<> (%scroll (?x ?y) ?a (?i ?n)) (%scroll ?y (?x ?a) ?n)
+
 ?(?-) (Editor command dispatching)
 <> (editor ?x (q)) (print bye!\n)
 <> (editor ?x (a)) (%append ?x dummy ())
@@ -64,5 +72,6 @@
 <> (editor ?x (j)) (%join ?x ())
 <> (editor ?x (e)) (%exchange ?x ())
 <> (editor ?x (=)) (%count ?x () (i))
+<> (editor ?x (. ?*)) (%scroll ?x () (?*))
 <> (editor ?x ?~) (editor ?x (?~))
 editor (> ()) input
