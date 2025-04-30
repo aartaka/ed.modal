@@ -16,8 +16,8 @@
 <> (%insert (?x ?y) ?z ?a) (%insert ?y ?z (?x ?a))
 
 ?(?-) (Prints the line at cursor)
-<> (%print (> ()) ?a) (print1 (\n) (%merge ?a (> (?~ ()))))
-<> (%print (> (?. ?y)) ?a) (print1 (?. \n) (%merge ?a (> (?x ?y))))
+<> (%print (> ()) ?a) (print1 (\n) (%merge ?a (> ())))
+<> (%print (> (?. ?y)) ?a) (print1 (?. \n) (%merge ?a (> ((?.) ?y))))
 <> (%print (?x ?y) ?a) (%print ?y (?x ?a))
 
 ?(?-) (Deletes the line at cursor)
