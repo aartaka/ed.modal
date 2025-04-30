@@ -30,6 +30,14 @@
 <> (%prev (> ?x) ?a) (%merge ?a (> ?x))
 <> (%prev (?x ?y) ?a) (%prev ?y (?x ?a))
 
+<> (%%join ?. () ?a ?t) (%merge ?a (> ((?.) ?t)))
+<> (%%join ?. (?x ?y) ?a ?t) (%%join (?. ?x) ?y ?a ?t)
+
+?(?-) (Join the current line with the next one)
+<> (%join (> ()) ?a) (%merge ?a (> ()))
+<> (%join (> (?. (?* ?z))) ?a) (%%join (?.) (?*) ?a ?z)
+<> (%join (?x ?y) ?a) (%join ?y (?x ?a))
+
 ?(?-) (Move to the next line)
 <> (%next (> ()) ?a) (%merge ?a (> ()))
 <> (%next (> (?x ?y)) ?a) (%merge ?a (?x (> ?y)))
@@ -43,5 +51,6 @@
 <> (editor ?x d) (%delete ?x ())
 <> (editor ?x -) (%prev ?x ())
 <> (editor ?x +) (%next ?x ())
+<> (editor ?x j) (%join ?x ())
 <> (editor ?x ?~) (editor ?x ?~)
 editor (> ()) input
