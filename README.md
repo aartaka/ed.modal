@@ -17,6 +17,18 @@ p
 => hello
 ```
 
+Supported commands:
+- q: quit
+- a: append text (next prompt) as a new line after the current one
+- i: same, but before the current line
+- p: print current line
+- d: delete current line
+- - and +: to move to next or previous line
+- j: join the contents (=words) of this line and the next ones
+- e: swap the current line contents with the contents of the next one
+- =: Get current line number, in unary.
+- . iiii: Move to i-th line, in unary.
+
 # Implementation details for the curious ones
 
 - I'm using a `>` cursor for current line marking.
