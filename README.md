@@ -34,10 +34,9 @@ Supported commands:
 - I'm using a `>` cursor for current line marking.
   With it, it's easy to match anything and everything around the cursor, be it for counting (`=`) or modification.
 - I introduced a swap/`e`xchange command just because it was extremely intuitive with this notation.
-- Modal (at least the implementation I'm using) is matching toplevel patterns first, which is unintuitive to me as an applicative language programmer.
-  I had to replace the editor form (`editor (contents) input`) with service forms like `%insert` and only after full iteration `%merge` them back into `editor`.
-  Sometimes that takes even more layers of indirection, like with `%%join`. 
-  Not fun.
+- I used a `Buffer` type tag to avoid premature command reading when processing lines.
+  After the processing is done, I rebuild the buffer, put a `Buffer` tag on it, and the editor is ready for new commands.
+  Neat trick that made me appreciate type tags that Devine's wiki was suggesting!
 - I like arbitrary length lists and use them for e.g. line contents.
   But Modal doesn't make it easy working with lists, preferring tuples and conses instead.
   Which makes sense, but it still puts me off.
