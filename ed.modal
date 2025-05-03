@@ -2,7 +2,7 @@
 <> (print1 ?: ?.) (?:?.)
 
 ?(?-) (Merges the reversed work list back into upright editor state)
-<> (%merge () ?t) (editor ?t input)
+<> (%merge () ?t) (Buffer ?t)
 <> (%merge (?h ?t) ?a) (%merge ?t (?h ?a))
 
 ?(?-) (Adds a new line after cursor)
@@ -62,16 +62,16 @@
 <> (%scroll (?x ?y) ?a (?i ?n)) (%scroll ?y (?x ?a) ?n)
 
 ?(?-) (Editor command dispatching)
-<> (editor ?x (q)) (print bye!\n)
-<> (editor ?x (a)) (%append ?x dummy ())
-<> (editor ?x (i)) (%insert ?x dummy ())
-<> (editor ?x (p)) (%print ?x ())
-<> (editor ?x (d)) (%delete ?x ())
-<> (editor ?x (-)) (%prev ?x ())
-<> (editor ?x (+)) (%next ?x ())
-<> (editor ?x (j)) (%join ?x ())
-<> (editor ?x (e)) (%exchange ?x ())
-<> (editor ?x (=)) (%count ?x () (i))
-<> (editor ?x (. ?*)) (%scroll ?x () (?*))
-<> (editor ?x ?~) (editor ?x (?~))
-editor (> ()) input
+<> (editor (Buffer ?x) (q)) (print bye!\n)
+<> (editor (Buffer ?x) (a)) (editor (%append ?x dummy ()) input)
+<> (editor (Buffer ?x) (i)) (editor (%insert ?x dummy ()) input)
+<> (editor (Buffer ?x) (p)) (editor (%print ?x ()) input)
+<> (editor (Buffer ?x) (d)) (editor (%delete ?x ()) input)
+<> (editor (Buffer ?x) (-)) (editor (%prev ?x ()) input)
+<> (editor (Buffer ?x) (+)) (editor (%next ?x ()) input)
+<> (editor (Buffer ?x) (j)) (editor (%join ?x ()) input)
+<> (editor (Buffer ?x) (e)) (editor (%exchange ?x ()) input)
+<> (editor (Buffer ?x) (=)) (editor (%count ?x () (i)) input)
+<> (editor (Buffer ?x) (. ?*)) (editor (%scroll ?x () (?*)) input)
+<> (editor (Buffer ?x) ?~) (editor (Buffer ?x) (?~))
+editor (Buffer (> ())) input
