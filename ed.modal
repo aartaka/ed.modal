@@ -1,5 +1,5 @@
 <> (print ?:) ?:
-<> (print1 ?: ?.) (?: ?.)
+<> (print1 ?: ?.) (?:?.)
 
 ?(?-) (Merges the reversed work list back into upright editor state)
 <> (%merge () ?t) (editor ?t input)
