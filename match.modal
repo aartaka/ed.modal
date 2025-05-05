@@ -12,7 +12,6 @@
            Period matches one token, asterisk matches a possibly empty sequence of tokens.
            Input data is the nested tuple of tokens to match.)
 <> (match ?x ?x) #t
-<> (match () ()) #t
 <> (match (. ?b) (?a ?c)) (match ?b ?c)
 <> (match (* ()) ?a) #t
 <> (match (* (?a ?b)) (?c ?d)) (or (match (?a ?b) (?c ?d)) (match (* (?a ?b)) ?d))
