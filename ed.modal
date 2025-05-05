@@ -17,7 +17,7 @@
 
 ?(?-) (Prints the line at cursor)
 <> (%print (> ()) ?a) (print1 (\n) (%merge ?a (> ())))
-<> (%print (> (?. ?y)) ?a) (print1 (?. \n) (%merge ?a (> ((?.) ?y))))
+<> (%print (> (?. ?y)) ?a) (print1 (?.\n) (%merge ?a (> ((?.) ?y))))
 <> (%print (?x ?y) ?a) (%print ?y (?x ?a))
 
 ?(?-) (Deletes the line at cursor)
