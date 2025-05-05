@@ -15,8 +15,8 @@
 <> (match (. ?b) (?a ?c)) (match ?b ?c)
 <> (match (* ()) ?a) #t
 <> (match (* (?a ?b)) (?c ?d)) (or (match (?a ?b) (?c ?d)) (match (* (?a ?b)) ?d))
-<> (match (+ (?a ?b)) ()) #f
-<> (match (+ (?a ?b)) (?c ?d)) (match (* (?a ?b)) ?d)
+<> (match (+ ?a) ()) #f
+<> (match (+ ?a) (?b ?c)) (match (* ?a) ?c)
 <> (match (?a ?b) (?c ?d)) (and (match ?a ?c) (match ?b ?d))
 <> (match ?x ?y) #f
 match (* (y (x (* (a ()))))) (y (x (c (b (a ())))))
