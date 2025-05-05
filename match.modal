@@ -1,0 +1,23 @@
+<> ((#t)) #t
+<> ((#f)) #f
+<> (or #f ?a) ?a
+<> (or #t ?a) #t
+<> (and #f ?a) #f
+<> (and #t ?a) ?a
+?(?-) (The first argument is the pattern,
+           the second one is the data to match against the pattern.
+           Returns either #t (match) or #f (no match).
+           Matches the whole piece of data, no partial matches allowed.
+           Pattern is a nested tuple containing literal tokens, periods, or asterisks.
+           Period matches one token, asterisk matches a possibly empty sequence of tokens.
+           Input data is the nested tuple of tokens to match.)
+<> (match ?x ?x) #t
+<> (match () ()) #t
+<> (match (. ?b) (?a ?c)) (match ?b ?c)
+<> (match (* ()) ?a) #t
+<> (match (* (?a ?b)) (?c ?d)) (or (match (?a ?b) (?c ?d)) (match (* (?a ?b)) ?d))
+<> (match (+ (?a ?b)) ()) #f
+<> (match (+ (?a ?b)) (?c ?d)) (match (* (?a ?b)) ?d)
+<> (match (?a ?b) (?c ?d)) (and (match ?a ?c) (match ?b ?d))
+<> (match ?x ?y) #f
+match (* (y (x (* (a ()))))) (y (x (c (b (a ())))))
